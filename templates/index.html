@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p>{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            <form action="/process" method="post">
+                <label>Your name: </label>
+                <input type="text" name="name" class="form-control mb-2">
+                <br>
+                <label>Dojo Location: </label>
+                <select name="school" class="form-control mb-2">
+                    <option value="San Jose">San Jose</option>
+                    <option value="Seattle">Seattle</option>
+                </select>
+                <br>
+                <label>Favorite Language: </label>
+                <select name="language" class="form-control mb-2">
+                    <option value="Python">Python</option>
+                    <option value="Java">Java</option>
+                </select>
+                <br>
+                <label>Comment (optional): </label>
+                <br>
+                <textarea name="comment" rows="4" cols="30" class="form-control mb-2"></textarea>
+                <br>
+                <input type="submit" name="submit" class="form-control mb-2">
+            </form>
+        </div>
+</div>
+</body>
+</html>
